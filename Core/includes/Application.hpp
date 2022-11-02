@@ -8,7 +8,7 @@ class Application
 {
 private:
 	bool programmClose = false;
-	Rendering draw;
+	Rendering calendar;
 
 private:
 	void setup();

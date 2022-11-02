@@ -1,8 +1,7 @@
-#pragma once
+#include "Date.hpp"
 
-struct Date
+void Date::getCurrentTime()
 {
-	int Year;
-	int Month;
-	int Day;
-};
+	std::time_t result = std::time(nullptr);
+	std::cout << std::ctime(&result);
+}

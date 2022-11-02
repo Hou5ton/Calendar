@@ -11,6 +11,8 @@ void Application::mainLoop()
 
 	while (!programmClose)
 	{
-		draw.frame();
+		calendar.arrayFilling();
+		calendar.frame(1,1);
+		calendar.Draw();
 	}
 }

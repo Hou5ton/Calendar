@@ -1,38 +1,48 @@
 #include "Rendering.hpp"
 
-void Rendering::frame()
+void Rendering::frame(int X, int Y)
 {
-    // clear field
-    system("cls");
-
-    for (int i = 0; i < WIDTH; i++)
+    for (int posX = X; posX < WIDTH; ++posX)
     {
-        std::cout << std::setw(widthParameter) << "#";
-    }
-    std::cout << "\n";
-
-    for (int i = 0; i < HEIGHT; i++)
-    {
-        for (int j = 0; j < WIDTH; j++)
+        for (int posY = Y; posY < HEIGHT; ++posY)
         {
-            if (j == 0 || j == WIDTH - 1)
+            if ((posX == X) && (posY == Y) || (posX == WIDTH - 1) && (posY == HEIGHT - 1))
             {
-                std::cout << std::setw(widthParameter) << "#";
+                array[posX][posY] = '#';
             }
-            else
+            else if ((posX == X) && (posY != Y) || (posX == WIDTH - 1) && (posY != HEIGHT - 1))
             {
-                bool print = false;
-                if (!print)
-                {
-                    std::cout << std::setw(widthParameter) << " ";
-                }
+                array[posX][posY] = '#';
+            }
+            else if ((posX != X) && (posY == Y) || (posX != WIDTH - 1) && (posY == HEIGHT - 1))
+            {
+                array[posX][posY] = '#';
             }
         }
-        std::cout << "\n";
     }
+}
 
-    for (int i = 0; i < WIDTH; i++)
+void Rendering::arrayFilling()
+{
+    for (int height = 0; height < numCols; ++height)
     {
-        std::cout << std::setw(widthParameter) << "#";
+        for (int width = 0; width < numRows; ++width)
+        {
+            array[height][width] = '*';
+        }
+    }
+}
+
+void Rendering::Draw()
+{
+    system("cls");
+
+    for (int height = 0; height < numCols; ++height)
+    {
+        for (int width = 0; width < numRows; ++width)
+        {
+            std::cout << std::setw(paddingWidth) << array[height][width];
+        }
+        std::cout << std::endl;
     }
 }

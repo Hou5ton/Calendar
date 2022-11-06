@@ -1,34 +1,72 @@
-#include "Rendering.hpp"
+﻿#include "Rendering.hpp"
 
-void Rendering::frame(int X, int Y)
+void Rendering::setup()
 {
-    for (int posX = X; posX < WIDTH; ++posX)
+    field();
+    rectangle();
+    line(1,2);
+    days(dayOfWeek);
+    numbers();
+    line(1, 8);
+}
+
+void Rendering::field()
+{
+    for (int height = 0; height < fieldHeight; ++height)
     {
-        for (int posY = Y; posY < HEIGHT; ++posY)
+        for (int width = 0; width < fieldWidth; ++width)
         {
-            if ((posX == X) && (posY == Y) || (posX == WIDTH - 1) && (posY == HEIGHT - 1))
+            array[height][width] = fieldCh;
+        }
+    }
+}
+
+void Rendering::rectangle()
+{
+    for (int currentX = startPosXrectngl; currentX < rectangleHeight; ++currentX)
+    {
+        for (int currentY = startPosYrectngl; currentY < rectangleWidth; ++currentY)
+        {
+            if ((currentX == startPosXrectngl) && (currentY == startPosYrectngl) || (currentX == rectangleHeight - 1) && (currentY == rectangleWidth - 1))
             {
-                array[posX][posY] = '#';
+                array[currentX][currentY] = rectangleCh;
             }
-            else if ((posX == X) && (posY != Y) || (posX == WIDTH - 1) && (posY != HEIGHT - 1))
+            else if ((currentX == startPosXrectngl) && (currentY != startPosYrectngl) || (currentX == rectangleHeight - 1) && (currentY != rectangleWidth - 1))
             {
-                array[posX][posY] = '#';
+                array[currentX][currentY] = rectangleCh;
             }
-            else if ((posX != X) && (posY == Y) || (posX != WIDTH - 1) && (posY == HEIGHT - 1))
+            else if ((currentX != startPosXrectngl) && (currentY == startPosYrectngl) || (currentX != rectangleHeight - 1) && (currentY == rectangleWidth - 1))
             {
-                array[posX][posY] = '#';
+                array[currentX][currentY] = rectangleCh;
             }
         }
     }
 }
 
-void Rendering::arrayFilling()
+void Rendering::line(const unsigned startPosX, const unsigned startPosY)
 {
-    for (int height = 0; height < numCols; ++height)
+    for (int i = startPosX; i < lineWidth + startPosX; ++i)
     {
-        for (int width = 0; width < numRows; ++width)
+        array[startPosY][i] = lineCh;
+    }
+}
+
+void Rendering::days(char* dayOfWeek)
+{
+
+    for (int i = startPosXdays, posArr = 0; i < 7 + startPosXdays; ++i, ++posArr)
+    {
+        array[startPosYdays][i] = dayOfWeek[posArr];
+    }
+}
+
+void Rendering::numbers()
+{
+    for (int curPosX = startPosXnum; curPosX < fieldHeightNum + startPosXnum; ++curPosX)
+    {
+        for (int curPosY = startPosYnum; curPosY < fieldWidthNum + startPosYnum; ++curPosY)
         {
-            array[height][width] = '*';
+            array[curPosX][curPosY] = std::to_string(dateCh++);;
         }
     }
 }
@@ -37,9 +75,9 @@ void Rendering::Draw()
 {
     system("cls");
 
-    for (int height = 0; height < numCols; ++height)
+    for (int height = 0; height < fieldHeight; ++height)
     {
-        for (int width = 0; width < numRows; ++width)
+        for (int width = 0; width < fieldWidth; ++width)
         {
             std::cout << std::setw(paddingWidth) << array[height][width];
         }

@@ -1,15 +1,17 @@
 #pragma once
 
-#include <chrono>
 #include <ctime>
 #include <iostream>
+#include <string>
 
 class Date
 {
 private:
 	int Year, Month, Day;
-	int seconds, minutes, hours;
+	int hours, minutes, seconds;
 
 public:
-	void getCurrentTime();
+	/*void getCurrentTime();
+	void print();*/
+
 };

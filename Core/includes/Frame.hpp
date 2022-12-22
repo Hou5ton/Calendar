@@ -1,10 +1,8 @@
 #pragma once
 
-#include <array>
 #include <iostream>
 #include <iomanip>
 #include <string>
-
 #include <vector>
 
 class Frame
@@ -14,7 +12,7 @@ private:
     // on which all other forms will be built
     const unsigned fieldHeight = 20;
     const unsigned fieldWidth = 20;
-    const char fieldCh = '1';
+    const std::string Ch = " ";
 
     // outer border of the calendar frame (rectangle)
     const unsigned startPosXrectngl = 0;
@@ -39,14 +37,12 @@ private:
     const unsigned fieldWidthNum = 7;
     unsigned dateCh = 1;
 
-    // other options
     const unsigned paddingWidth = 4;
-    std::string array[20][20] = { "*" };
-    std::array<std::array<std::string, 20>, 20> ar;
+    std::vector<std::vector<std::string>> matrix;
 private:
 
     // filling the main field with empty characters
-    void fillMainField();
+    void fillMainMatrix();
 
     // filling the outer borders of the calendar frame (rectangle)
     void fillOuterBorders();
@@ -59,7 +55,6 @@ private:
 
     // inserting days into a matrix
     void Frame::insertDaysInMatrix();
-
 public:
     Frame();
 

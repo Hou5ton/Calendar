@@ -5,12 +5,15 @@ set(CALENDAR_PROJECT_NAME Core)
 set(CALENDAR_PUBLIC_INCLUDES 
 	includes/Application.hpp 
 	includes/Date.hpp
+	includes/Frame.hpp
 	includes/Notice.hpp
-	includes/Rendering.hpp)
+	includes/Rendering.hpp
+	)
 
 set(CALENDAR_PRIVATE_SOURCES 
 	src/Application.cpp
 	src/Date.cpp
+	src/Frame.cpp
 	src/Notice.cpp
 	src/Rendering.cpp)
 

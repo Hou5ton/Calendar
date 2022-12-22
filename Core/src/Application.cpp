@@ -7,6 +7,9 @@ void Application::setup()
 
 void Application::mainLoop()
 {
-	calendar.Draw();
-	// d.print();
+
+	while (true)
+	{
+		calendar.Draw();
+	}
 }

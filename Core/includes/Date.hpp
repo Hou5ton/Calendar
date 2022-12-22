@@ -9,9 +9,4 @@ class Date
 private:
 	int Year, Month, Day;
 	int hours, minutes, seconds;
-
-public:
-	/*void getCurrentTime();
-	void print();*/
-
 };
